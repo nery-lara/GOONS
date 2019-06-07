@@ -1,5 +1,8 @@
 package com.nerylara.goons;
 
+import android.app.Activity;
+import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -9,6 +12,7 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +26,31 @@ public class MainActivity extends AppCompatActivity {
                 .beginTransaction()
                 .replace(R.id.fragment_container,new ProfileFragment())
                 .commit();
+
+        Intent svc= new Intent(this, backgroundMusic.class);
+        startService(svc);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Intent svc= new Intent(this, backgroundMusic.class);
+        startService(svc);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Intent svc= new Intent(this, backgroundMusic.class);
+        startService(svc);
+    }
+
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Intent svc= new Intent(this, backgroundMusic.class);
+        stopService(svc);
     }
 
     private  BottomNavigationView.OnNavigationItemSelectedListener navListener =
