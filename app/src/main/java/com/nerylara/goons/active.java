@@ -15,6 +15,10 @@ public class active {
     private boolean active = false;
 
 
+    void setUserId(String id){
+        userId = id;
+    }
+
     void setActive(boolean active){
         this.active = active;
     }
