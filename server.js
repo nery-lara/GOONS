@@ -349,8 +349,12 @@ app.post('/propose', (req, res) => {
                 console.log(result.proposeid)
                 console.log(result)
                 data.res = 403
+                data.verify = false
             } else {
+                console.log("available")
                 data.res = 200
+                data.verify = true
+                console.log(data)
             }
             res.send(data)
 
@@ -413,6 +417,36 @@ app.post('/game', (req, res) => {
         res.send(data)
     })
 })
+
+app.post('/login', (req, res) => {
+    console.log(req.body)
+    console.log("user id:" + req.body.userid)
+    mongoClient.connect(url, (err, db) => {
+        if (err) throw err
+        var db0 = db.db("goonsdb");
+        var user = db0.collection('goons').findOne({ userid: req.body.userid }, (err, result) => {
+            var data = { "type": "login" }
+            if (result) {
+                if(result.password == req.body.password){
+                    data.res = 200
+                    data.verify = true
+                    console.log("match")
+                }else {
+                    data.res = 403
+                    data.verify = false
+                    console.log('no match')
+                }
+            } else {
+                data.res = 403
+                data.verify = false
+                console.log('user doesnt exist')
+            }
+            res.send(data)
+            db.close();
+        })
+    })
+})
+
 
 var server = app.listen(3000, () => {
     var host = server.address().address
