@@ -216,6 +216,13 @@ app.get('/profile', (req, res) => {
 })
 
 app.get('/map', (req, res) => {
+    if(!req.body.userid){
+        return res.json({
+            "type": "map",
+            "res": 403,
+            "message": "userid is empty"
+        })
+    }
     console.log("map")
     mongoClient.connect(url, (err, db) => {
         if (err) throw err
@@ -297,6 +304,13 @@ app.get('/squad', (req, res) => {
 
 app.post('/signup', (req, res) => {
     console.log("signup user:" + req.body.userid)
+    if(!req.body.userid){
+        return res.json({
+            "message": "userid empty",
+            "type": "signup",
+            "res": 403
+        })
+    }
     var user = {
         userid: req.body.userid,
         password: req.body.password,
