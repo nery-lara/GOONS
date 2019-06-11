@@ -64,7 +64,7 @@ public class login {
                     if(type.equals("login")){
                         boolean verify = serverResp.getBoolean("verify");
                         mEditor = mPreferences.edit();
-                        mEditor.putBoolean("verify", false);
+                        mEditor.putBoolean("verify",verify);
                         mEditor.apply();
                     }
                     /* should check for errors */

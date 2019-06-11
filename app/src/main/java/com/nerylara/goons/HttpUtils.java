@@ -8,7 +8,7 @@ import cz.msebera.android.httpclient.HttpEntity;
 
 public class HttpUtils {
 
-    private static final String BASE_URL = "";
+    private static final String BASE_URL = "http://b67d962f.ngrok.io/";
     private static AsyncHttpClient client = new AsyncHttpClient();
 
     public static void get(Context context, String url, HttpEntity entity, String contentType, AsyncHttpResponseHandler responseHandler) {

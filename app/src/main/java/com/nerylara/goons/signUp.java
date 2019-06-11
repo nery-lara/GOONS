@@ -73,7 +73,7 @@ public class signUp {
                     if(type.equals("propose")){
                         boolean verify = serverResp.getBoolean("verify");
                         mEditor = mPreferences.edit();
-                        mEditor.putBoolean("verify", false);
+                        mEditor.putBoolean("verify", verify);
                         mEditor.apply();
                     }
                     /* should check for errors */

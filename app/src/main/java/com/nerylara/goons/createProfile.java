@@ -1,7 +1,10 @@
 package com.nerylara.goons;
 
 import android.app.Activity;
+import android.app.Application;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -10,13 +13,17 @@ import android.widget.ImageView;
 
 import static android.support.constraint.Constraints.TAG;
 
-public class createProfile extends AppCompatActivity implements View.OnClickListener {
+public class createProfile extends Activity implements View.OnClickListener {
+
+//    Context myappContext = getApplication().getApplicationContext();
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_profile);
+        final signUp signup_info = new signUp(getApplicationContext());
+
         ImageView image0 = findViewById(R.id.icon0);
         ImageView image1 = findViewById(R.id.icon1);
         ImageView image2 = findViewById(R.id.icon2);
@@ -37,8 +44,6 @@ public class createProfile extends AppCompatActivity implements View.OnClickList
         image7.setOnClickListener(this);
         image8.setOnClickListener(this);
 
-
-
         // *** = DONE
 
         // TODO: Display the different squads ****
@@ -50,62 +55,53 @@ public class createProfile extends AppCompatActivity implements View.OnClickList
     public void onClick(View v){
         Log.i(TAG, "Enters onClick Method");
         Intent intent1 = new Intent(this, ChooseSquad.class);
+        signUp signUp_info = new signUp(getApplicationContext());
         switch (v.getId()){
             case R.id.icon0:
-                int path1;
-                path1 = R.drawable.icon1t;
-                intent1.putExtra("path", path1);
+                signUp_info.setimageNum(0);
+                signUp_info.sendSignUpDetails(getApplicationContext());
                 startActivity(intent1);
                 break;
             case R.id.icon1:
-                int path2;
-                path2 = R.drawable.icon2t;
-                intent1.putExtra("path", path2);
+                signUp_info.setimageNum(1);
+                signUp_info.sendSignUpDetails(getApplicationContext());
                 startActivity(intent1);
                 break;
             case R.id.icon2:
-                int path3;
-                path3 = R.drawable.icon3t;
-                intent1.putExtra("path", path3);
+                signUp_info.setimageNum(2);
+                signUp_info.sendSignUpDetails(getApplicationContext());
                 startActivity(intent1);
                 break;
             case R.id.icon3:
-                int path4;
-                path4 = R.drawable.icon4t;
-                intent1.putExtra("path", path4);
+                signUp_info.setimageNum(3);
+                signUp_info.sendSignUpDetails(getApplicationContext());
                 startActivity(intent1);
                 break;
             case R.id.icon4:
-                int path5;
-                path5 = R.drawable.icon5t;
-                intent1.putExtra("path", path5);
+                signUp_info.setimageNum(4);
+                signUp_info.sendSignUpDetails(getApplicationContext());
                 startActivity(intent1);
                 break;
             case R.id.icon5:
-                int path6;
-                path6 = R.drawable.icon6t;
-                intent1.putExtra("path", path6);
+                signUp_info.setimageNum(5);
+                signUp_info.sendSignUpDetails(getApplicationContext());
                 startActivity(intent1);
                 break;
             case R.id.icon6:
-                int path7;
-                path7 = R.drawable.icon7t;
-                intent1.putExtra("path", path7);
+                signUp_info.setimageNum(6);
+                signUp_info.sendSignUpDetails(getApplicationContext());
                 startActivity(intent1);
                 break;
             case R.id.icon7:
-                int path8;
-                path8 = R.drawable.icon8t;
-                intent1.putExtra("path", path8);
+                signUp_info.setimageNum(7);
+                signUp_info.sendSignUpDetails(getApplicationContext());
                 startActivity(intent1);
                 break;
             case R.id.icon8:
-                int path9;
-                path9 = R.drawable.icon9t;
-                intent1.putExtra("path", path9);
+                signUp_info.setimageNum(8);
+                signUp_info.sendSignUpDetails(getApplicationContext());
                 startActivity(intent1);
                 break;
-
         }
     }
 

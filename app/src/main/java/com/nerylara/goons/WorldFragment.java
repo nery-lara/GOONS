@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,7 +35,7 @@ public class WorldFragment extends Fragment {
         mMapView.onResume(); // needed to get the map to display immediately
 
         try{
-            MapsInitializer.initialize(getActivity().getApplicationContext());
+            MapsInitializer.initialize(getActivity());
         }   catch (Exception e){
             e.printStackTrace();
         }
@@ -68,7 +69,12 @@ public class WorldFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        mMapView.onPause();
+        final FragmentManager fragManager = this.getChildFragmentManager();
+        final Fragment fragment = fragManager.findFragmentById(R.id.mapView);
+        if(fragment!=null){
+            fragManager.beginTransaction().remove(fragment).commit();
+            googleMap=null;
+        }
     }
 
     @Override
