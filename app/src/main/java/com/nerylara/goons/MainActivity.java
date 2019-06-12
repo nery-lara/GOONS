@@ -29,13 +29,16 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = getIntent();
         final String username = intent.getStringExtra("Username_transfer");
         System.out.println("username in MAINACTIVITY "+ username);
-
+        Bundle bundle = new Bundle();
+        bundle.putString("Username_transfer",username);
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(navListener);
+        ProfileFragment prof = new ProfileFragment();
+        prof.setArguments(bundle);
         // Start Profile Screen
         getSupportFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fragment_container,new ProfileFragment())
+                .replace(R.id.fragment_container,prof)
                 .commit();
 
         Intent svc= new Intent(this, backgroundMusic.class);

@@ -78,7 +78,7 @@ public class login_signup extends AppCompatActivity{
                             signupbutton.setVisibility(View.INVISIBLE);
                         }
                     }
-                }, 5000);
+                }, 0);
             }
         });
 
@@ -105,7 +105,7 @@ public class login_signup extends AppCompatActivity{
                                     Toast.LENGTH_LONG).show();
                         }
                     }
-                }, 5000);
+                }, 0);
             }
         });
 
@@ -133,7 +133,7 @@ public class login_signup extends AppCompatActivity{
                             extra.putString("ExtraPassword",password_transfer);
                             intent.putExtras(extra);
                             startActivity(intent);
-                        }}, 5000);
+                        }}, 0);
                 }
             }
         });

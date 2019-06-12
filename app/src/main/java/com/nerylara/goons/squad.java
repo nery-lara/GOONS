@@ -36,6 +36,7 @@ public class squad {
 
 
     void setId(String id){
+
         userId = id;
     }
 

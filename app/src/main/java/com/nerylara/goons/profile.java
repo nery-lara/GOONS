@@ -48,7 +48,7 @@ public class profile {
 
 
     int getImageNum(){
-        return (mImageNum.getInt("imageNum", 0));
+        return (mImageNum.getInt("imagenum", 0));
     }
 
 
@@ -64,6 +64,9 @@ public class profile {
     double getWinrate(){
         int wins = mWins.getInt("wins", 0);
         int losses = mWins.getInt("losses", 0);
+        if(wins+losses == 0){
+            return 0;
+        }
         return (wins/(wins+losses));
     }
 
@@ -96,13 +99,23 @@ public class profile {
                     JSONObject serverResp = new JSONObject(response.toString());
                     String type = serverResp.getString("type");
                     if(type.equals("profile")){
+
+                        Log.d("user squad:", "in profile bro" );
                          JSONObject user = serverResp.getJSONObject("user");
+                        Log.d("user object", "" + user);
                          String squad = user.getString("squad");
+                        Log.d("user squad:", "" + squad);
                          String rank = user.getString("rank");
                          int wins = user.getInt("wins");
+                        Log.d("user wins:", "" + wins);
                          int losses = user.getInt("losses");
+                        Log.d("user losses:", "" + losses);
                          int imageNum = user.getInt("imagenum");
+                        Log.d("user imagenum:", "" + imageNum);
 
+                        imageNumEditor = mImageNum.edit();
+                        imageNumEditor.putInt("imagenum", imageNum);
+                        imageNumEditor.commit();
 
                         squadEditor = mSquad.edit();
                         squadEditor.putString("squad", squad);
@@ -120,9 +133,7 @@ public class profile {
                         lossesEditor.putInt("losses", losses);
                         lossesEditor.apply();
 
-                        imageNumEditor = mImageNum.edit();
-                        imageNumEditor.putInt("imagenum", imageNum);
-                        imageNumEditor.apply();
+
 
                     }
                     /* should check for errors */

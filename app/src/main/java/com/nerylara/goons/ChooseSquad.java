@@ -54,15 +54,8 @@ public class ChooseSquad extends AppCompatActivity implements View.OnClickListen
                         joinSquad_info.setId(username);
                         joinSquad_info.setSquad("north");
                         joinSquad_info.sendSquaDetails(getApplicationContext());
-                        Intent intent = new Intent(getApplicationContext(), ProfileFragment.class);
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         intent.putExtra("Username_transfer",username);
-//                        Bundle bundle = new Bundle();
-//                        bundle.putString("Username_transfer", username);
-//                        // set Fragmentclass Arguments
-//                        ProfileFragment fragobj = new ProfileFragment();
-//                        intent.putExtras(bundle);
-
-//                        fragobj.setArguments(bundle);
                         startActivity(intent);
                     }
 
@@ -82,6 +75,7 @@ public class ChooseSquad extends AppCompatActivity implements View.OnClickListen
                         joinSquad_info.setSquad("south");
                         joinSquad_info.sendSquaDetails(getApplicationContext());
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        intent.putExtra("Username_transfer",username);
 
 
 
@@ -101,7 +95,10 @@ public class ChooseSquad extends AppCompatActivity implements View.OnClickListen
                     public void onClick(DialogInterface dialog, int which) {
                         joinSquad_info.setId(username);
                         joinSquad_info.setSquad("east");
-                        joinSquad_info.sendSquaDetails(getApplicationContext());Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        joinSquad_info.sendSquaDetails(getApplicationContext());
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        intent.putExtra("Username_transfer",username);
+
                         startActivity(intent);
 
                     }
@@ -119,6 +116,7 @@ public class ChooseSquad extends AppCompatActivity implements View.OnClickListen
                         joinSquad_info.setSquad("west");
                         joinSquad_info.sendSquaDetails(getApplicationContext());
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        intent.putExtra("Username_transfer",username);
                         startActivity(intent);
                     }
                 });
