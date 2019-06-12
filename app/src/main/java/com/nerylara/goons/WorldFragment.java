@@ -33,6 +33,7 @@ public class WorldFragment extends Fragment {
         String username = getArguments().getString("Username_transfer");
         System.out.println("Username in WORLD_FRAGMENT" + username);
 
+
         mMapView =  (MapView) rootView.findViewById(R.id.mapView);
         mMapView.onCreate(savedInstanceState);
 

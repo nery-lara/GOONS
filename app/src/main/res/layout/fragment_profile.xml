@@ -96,5 +96,36 @@
         app:layout_constraintTop_toBottomOf="@+id/user_icon"
         app:layout_constraintVertical_bias="0.265" />
 
+    <Button
+        android:id="@+id/button_minigame"
+        android:layout_width="wrap_content"
+        android:layout_height="46dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Minigame"
+        app:layout_constraintBottom_toTopOf="@+id/reputation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.285"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/user_icon"
+        app:layout_constraintVertical_bias="0.513" />
+
+    <Button
+        android:id="@+id/queue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="Queue Up"
+        app:layout_constraintBottom_toTopOf="@+id/placement"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.264"
+        app:layout_constraintStart_toEndOf="@+id/button_minigame"
+        app:layout_constraintTop_toBottomOf="@+id/user_icon"
+        app:layout_constraintVertical_bias="0.441" />
+
 
 </android.support.constraint.ConstraintLayout>

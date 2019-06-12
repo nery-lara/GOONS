@@ -9,10 +9,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class ProfileFragment extends Fragment {
+public class ProfileFragment extends Fragment implements View.OnClickListener {
     ViewGroup rootView;
     ImageView user_icon;
 
@@ -23,7 +24,7 @@ public class ProfileFragment extends Fragment {
         rootView =  (ViewGroup) inflater.inflate(R.layout.fragment_profile, container,false);
         user_icon = rootView.findViewById(R.id.user_icon);
 
-        String username = getArguments().getString("Username_transfer");
+        final String username = getArguments().getString("Username_transfer");
 
         TextView win_loss = rootView.findViewById(R.id.reputation);
         TextView squad_repping = rootView.findViewById(R.id.placement);
@@ -80,7 +81,25 @@ public class ProfileFragment extends Fragment {
             user_icon.setImageResource(R.drawable.squad9);
         }
             }}, 200);
+
+
+        final Button minigameButton = rootView.findViewById(R.id.button_minigame);
+        minigameButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent minigameIntent = new Intent(getContext(),MiniGame.class);
+                minigameIntent.putExtra("Username_transfer",username);
+                startActivity(minigameIntent);
+            }
+        });
+
+
+
         return rootView;
     }
 
+    @Override
+    public void onClick(View v) {
+
+    }
 }
