@@ -38,6 +38,9 @@ public class SquadsFragment extends Fragment implements View.OnClickListener {
         rootView = (ViewGroup) inflater.inflate(R.layout.fragment_squads, container, false);
         final ImageView mySquad = rootView.findViewById(R.id.mySquad);
 
+        String username = getArguments().getString("Username_transfer");
+        System.out.println("Username in SQUADS_FRAGMENT" + username);
+
         final ImageView other_squad0 = rootView.findViewById(R.id.otherSquad0);
         final ImageView other_squad1 = rootView.findViewById(R.id.otherSquad1);
         final ImageView other_squad2 = rootView.findViewById(R.id.otherSquad2);

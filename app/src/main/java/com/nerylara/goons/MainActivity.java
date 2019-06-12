@@ -72,15 +72,26 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public boolean onNavigationItemSelected(@NonNull MenuItem item){
                     Fragment selectedFragment = null;
+                    Intent intent = getIntent();
+                    final String username = intent.getStringExtra("Username_transfer");
+                    Bundle bundle = new Bundle();
+                    bundle.putString("Username_transfer",username);
+
                     switch (item.getItemId()){
                         case R.id.navProfile:
-                            selectedFragment = new ProfileFragment();
+                            ProfileFragment profile = new ProfileFragment();
+                            profile.setArguments(bundle);
+                            selectedFragment = profile;
                             break;
                         case R.id.navWorld:
-                            selectedFragment = new WorldFragment();
+                            WorldFragment world = new WorldFragment();
+                            world.setArguments(bundle);
+                            selectedFragment = world;
                             break;
                         case R.id.navSquads:
-                            selectedFragment = new SquadsFragment();
+                            SquadsFragment squads = new SquadsFragment();
+                            squads.setArguments(bundle);
+                            selectedFragment = squads;
                             break;
                     }
                     getSupportFragmentManager()

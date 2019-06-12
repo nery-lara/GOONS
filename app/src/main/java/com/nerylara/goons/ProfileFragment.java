@@ -79,9 +79,6 @@ public class ProfileFragment extends Fragment {
         }else if (icon_indicator == 8){
             user_icon.setImageResource(R.drawable.squad9);
         }
-
-
-
             }}, 200);
         return rootView;
     }
