@@ -31,7 +31,6 @@ public class login_signup extends AppCompatActivity{
     TextView sign_password1;
     Button availablebutton;
     private signUp signUp_info;
-//    public final signUp signUp_info = new signUp(getApplicationContext());
 
 
 

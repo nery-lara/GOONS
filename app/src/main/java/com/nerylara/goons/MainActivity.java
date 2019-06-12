@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity {
                     final String username = intent.getStringExtra("Username_transfer");
                     Bundle bundle = new Bundle();
                     bundle.putString("Username_transfer",username);
+
                     switch (item.getItemId()){
                         case R.id.navProfile:
                             ProfileFragment profile = new ProfileFragment();
@@ -87,10 +88,14 @@ public class MainActivity extends AppCompatActivity {
                             selectedFragment = profile;
                             break;
                         case R.id.navWorld:
-                            selectedFragment = new WorldFragment();
+                            WorldFragment world = new WorldFragment();
+                            world.setArguments(bundle);
+                            selectedFragment = world;
                             break;
                         case R.id.navSquads:
-                            selectedFragment = new SquadsFragment();
+                            SquadsFragment squads = new SquadsFragment();
+                            squads.setArguments(bundle);
+                            selectedFragment = squads;
                             break;
                     }
                     getSupportFragmentManager()
