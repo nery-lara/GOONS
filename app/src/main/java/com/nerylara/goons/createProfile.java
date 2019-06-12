@@ -13,7 +13,7 @@ import android.widget.ImageView;
 
 import static android.support.constraint.Constraints.TAG;
 
-public class createProfile extends Activity implements View.OnClickListener {
+public class createProfile extends AppCompatActivity implements View.OnClickListener {
 
 
     @Override

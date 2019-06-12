@@ -50,33 +50,33 @@ public class SquadsFragment extends Fragment implements View.OnClickListener {
         squad.sendSquadDetails();
 
         if (squad_indicator == 0) {
-            mySquad.setImageResource(R.drawable.squad1);
+            mySquad.setImageResource(R.drawable.squad5);
             mySquad.setTag(10,12);
             other_squad0.setImageResource(R.drawable.squad2);
             other_squad0.setTag(20,13);
-            other_squad1.setImageResource(R.drawable.squad3);
+            other_squad1.setImageResource(R.drawable.squad7);
             other_squad1.setTag(30,14);
-            other_squad2.setImageResource(R.drawable.squad4);
+            other_squad2.setImageResource(R.drawable.squad1);
             other_squad2.setTag(40,15);
         } else if (squad_indicator == 1) {
             mySquad.setImageResource(R.drawable.squad2);
             mySquad.setTag("squad2");
-            other_squad0.setImageResource(R.drawable.squad1);
-            other_squad1.setImageResource(R.drawable.squad3);
-            other_squad2.setImageResource(R.drawable.squad4);
+            other_squad0.setImageResource(R.drawable.squad5);
+            other_squad1.setImageResource(R.drawable.squad7);
+            other_squad2.setImageResource(R.drawable.squad1);
 
         } else if (squad_indicator == 2) {
-            mySquad.setImageResource(R.drawable.squad3);
+            mySquad.setImageResource(R.drawable.squad7);
             mySquad.setTag("squad3");
-            other_squad0.setImageResource(R.drawable.squad1);
-            other_squad1.setImageResource(R.drawable.squad3);
-            other_squad2.setImageResource(R.drawable.squad4);
-        } else if (squad_indicator == 3) {
-            mySquad.setImageResource(R.drawable.squad4);
-            mySquad.setTag("squad4");
-            other_squad0.setImageResource(R.drawable.squad1);
+            other_squad0.setImageResource(R.drawable.squad5);
             other_squad1.setImageResource(R.drawable.squad2);
-            other_squad2.setImageResource(R.drawable.squad3);
+            other_squad2.setImageResource(R.drawable.squad1);
+        } else if (squad_indicator == 3) {
+            mySquad.setImageResource(R.drawable.squad1);
+            mySquad.setTag("squad4");
+            other_squad0.setImageResource(R.drawable.squad5);
+            other_squad1.setImageResource(R.drawable.squad2);
+            other_squad2.setImageResource(R.drawable.squad7);
         }
 
 
