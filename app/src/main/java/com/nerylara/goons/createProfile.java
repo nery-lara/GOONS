@@ -15,14 +15,12 @@ import static android.support.constraint.Constraints.TAG;
 
 public class createProfile extends Activity implements View.OnClickListener {
 
-//    Context myappContext = getApplication().getApplicationContext();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_profile);
-        final signUp signup_info = new signUp(getApplicationContext());
+
 
         ImageView image0 = findViewById(R.id.icon0);
         ImageView image1 = findViewById(R.id.icon1);
@@ -55,51 +53,83 @@ public class createProfile extends Activity implements View.OnClickListener {
     public void onClick(View v){
         Log.i(TAG, "Enters onClick Method");
         Intent intent1 = new Intent(this, ChooseSquad.class);
-        signUp signUp_info = new signUp(getApplicationContext());
+        final signUp signUp_info = new signUp(getApplicationContext());
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        String username_string = extras.getString("ExtraUsername");
+        String password_string = extras.getString("ExtraPassword");
+
         switch (v.getId()){
             case R.id.icon0:
+                signUp_info.setId(username_string);
+                signUp_info.setPassword(password_string);
                 signUp_info.setimageNum(0);
                 signUp_info.sendSignUpDetails(getApplicationContext());
+                intent1.putExtra("Username_Transfer",username_string);
                 startActivity(intent1);
                 break;
             case R.id.icon1:
+                signUp_info.setId(username_string);
+                signUp_info.setPassword(password_string);
                 signUp_info.setimageNum(1);
                 signUp_info.sendSignUpDetails(getApplicationContext());
+                intent1.putExtra("Username_Transfer",username_string);
                 startActivity(intent1);
                 break;
             case R.id.icon2:
+                signUp_info.setId(username_string);
+                signUp_info.setPassword(password_string);
                 signUp_info.setimageNum(2);
                 signUp_info.sendSignUpDetails(getApplicationContext());
+                intent1.putExtra("Username_Transfer",username_string);
                 startActivity(intent1);
                 break;
             case R.id.icon3:
+                signUp_info.setId(username_string);
+                signUp_info.setPassword(password_string);
                 signUp_info.setimageNum(3);
                 signUp_info.sendSignUpDetails(getApplicationContext());
+                intent1.putExtra("Username_Transfer",username_string);
                 startActivity(intent1);
                 break;
             case R.id.icon4:
+                signUp_info.setId(username_string);
+                signUp_info.setPassword(password_string);
                 signUp_info.setimageNum(4);
                 signUp_info.sendSignUpDetails(getApplicationContext());
+                intent1.putExtra("Username_Transfer",username_string);
                 startActivity(intent1);
                 break;
             case R.id.icon5:
+                signUp_info.setId(username_string);
+                signUp_info.setPassword(password_string);
                 signUp_info.setimageNum(5);
+                intent1.putExtra("Username_Transfer",username_string);
                 signUp_info.sendSignUpDetails(getApplicationContext());
                 startActivity(intent1);
                 break;
             case R.id.icon6:
+                signUp_info.setId(username_string);
+                signUp_info.setPassword(password_string);
                 signUp_info.setimageNum(6);
                 signUp_info.sendSignUpDetails(getApplicationContext());
+                intent1.putExtra("Username_Transfer",username_string);
                 startActivity(intent1);
                 break;
             case R.id.icon7:
+                signUp_info.setId(username_string);
+                signUp_info.setPassword(password_string);
                 signUp_info.setimageNum(7);
                 signUp_info.sendSignUpDetails(getApplicationContext());
+                intent1.putExtra("Username_Transfer",username_string);
                 startActivity(intent1);
                 break;
             case R.id.icon8:
+                signUp_info.setId(username_string);
+                signUp_info.setPassword(password_string);
                 signUp_info.setimageNum(8);
                 signUp_info.sendSignUpDetails(getApplicationContext());
+                intent1.putExtra("Username_Transfer",username_string);
                 startActivity(intent1);
                 break;
         }

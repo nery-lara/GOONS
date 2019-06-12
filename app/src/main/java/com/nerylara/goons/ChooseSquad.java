@@ -2,8 +2,12 @@ package com.nerylara.goons;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -22,6 +26,7 @@ public class ChooseSquad extends AppCompatActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.choose_squad);
 
+
         final ImageView image0 = findViewById(R.id.squad0);
         final ImageView image1 = findViewById(R.id.squad1);
         final ImageView image2 = findViewById(R.id.squad2);
@@ -34,6 +39,9 @@ public class ChooseSquad extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
+        final joinSquad joinSquad_info = new joinSquad();
+        Intent intent = getIntent();
+        final String username =  intent.getStringExtra("Username_Transfer");
         switch (v.getId()) {
             case R.id.squad0:
                 Log.i(TAG, "Clicked Squad 0");
@@ -43,7 +51,18 @@ public class ChooseSquad extends AppCompatActivity implements View.OnClickListen
                 builder.setButton("Initiate", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        joinSquad_info.setId(username);
+                        joinSquad_info.setSquad("north");
+                        joinSquad_info.sendSquaDetails(getApplicationContext());
+                        Intent intent = new Intent(getApplicationContext(), ProfileFragment.class);
+                        intent.putExtra("Username_transfer",username);
+//                        Bundle bundle = new Bundle();
+//                        bundle.putString("Username_transfer", username);
+//                        // set Fragmentclass Arguments
+//                        ProfileFragment fragobj = new ProfileFragment();
+//                        intent.putExtras(bundle);
+
+//                        fragobj.setArguments(bundle);
                         startActivity(intent);
                     }
 
@@ -59,7 +78,14 @@ public class ChooseSquad extends AppCompatActivity implements View.OnClickListen
                 builder1.setButton("Initiate", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        joinSquad_info.setId(username);
+                        joinSquad_info.setSquad("south");
+                        joinSquad_info.sendSquaDetails(getApplicationContext());
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+
+
+
+
                         startActivity(intent);
                     }
                 });
@@ -73,8 +99,11 @@ public class ChooseSquad extends AppCompatActivity implements View.OnClickListen
                 builder2.setButton("Initiate", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        joinSquad_info.setId(username);
+                        joinSquad_info.setSquad("east");
+                        joinSquad_info.sendSquaDetails(getApplicationContext());Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(intent);
+
                     }
                 });
                 builder2.show();
@@ -86,6 +115,9 @@ public class ChooseSquad extends AppCompatActivity implements View.OnClickListen
                 builder3.setButton("Initiate", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        joinSquad_info.setId(username);
+                        joinSquad_info.setSquad("west");
+                        joinSquad_info.sendSquaDetails(getApplicationContext());
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         startActivity(intent);
                     }

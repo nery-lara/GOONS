@@ -25,9 +25,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getSupportActionBar().hide();
+
+        Intent intent = getIntent();
+        final String username = intent.getStringExtra("Username_transfer");
+        System.out.println("username in MAINACTIVITY "+ username);
+
         BottomNavigationView navView = findViewById(R.id.nav_view);
         navView.setOnNavigationItemSelectedListener(navListener);
-
         // Start Profile Screen
         getSupportFragmentManager()
                 .beginTransaction()

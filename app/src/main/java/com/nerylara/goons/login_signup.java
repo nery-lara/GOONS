@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
+import android.telephony.mbms.StreamingServiceInfo;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -115,17 +116,22 @@ public class login_signup extends AppCompatActivity{
                     Toast.makeText(getApplicationContext(), "Please enter password",
                             Toast.LENGTH_LONG).show();
                 } else{
-                    signUp_info.setId(sign_username1.getText().toString());
-                    signUp_info.setPassword(sign_password1.getText().toString());
-                    signUp_info.sendSignUpDetails(getApplicationContext());
-                    Context myAppContext = getApplicationContext();
+                    //signUp_info.setId(sign_username1.getText().toString());
+                    //signUp_info.setPassword(sign_password1.getText().toString());
+                    //signUp_info.sendSignUpDetails(getApplicationContext());
+                    // Context myAppContext = getApplicationContext();
 
                     final Handler handler = new Handler();
                     handler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             Intent intent = new Intent(getApplicationContext(), createProfile.class);
-
+                            String username_transfer = sign_username1.getText().toString();
+                            String password_transfer = sign_password1.getText().toString();
+                            Bundle extra = new Bundle();
+                            extra.putString("ExtraUsername",username_transfer);
+                            extra.putString("ExtraPassword",password_transfer);
+                            intent.putExtras(extra);
                             startActivity(intent);
                         }}, 5000);
                 }
@@ -154,8 +160,9 @@ public class login_signup extends AppCompatActivity{
     }
 
     public void openMainActivity(){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
+        Intent intent_log = new Intent(this, MainActivity.class);
+        intent_log.putExtra("Username_transfer",login_username1.getText().toString());
+        startActivity(intent_log);
     }
 
 

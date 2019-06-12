@@ -1,5 +1,6 @@
 package com.nerylara.goons;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,17 +15,27 @@ public class ProfileFragment extends Fragment {
     ViewGroup rootView;
     ImageView user_icon;
 
-    int icon_indicator = 1;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView =  (ViewGroup) inflater.inflate(R.layout.fragment_profile, container,false);
         user_icon = rootView.findViewById(R.id.user_icon);
+
+//        String username = this.getArguments().getString("Username_transfer");
+
         TextView win_loss = rootView.findViewById(R.id.reputation);
         TextView squad_repping = rootView.findViewById(R.id.placement);
         TextView rank = rootView.findViewById(R.id.members);
 
+
+//        System.out.println("Username in PROFILE FRAGMENT " + username);
+        final profile profile = new profile(getContext());
+//        profile.setId(username);
+        profile.sendProfileDetails(getContext());
+        int icon_indicator = profile.getImageNum();
+
+        System.out.println(icon_indicator);
         // TODO: Get user icon function;
         // TODO: Get user rank function;
         // TODO: Get user squad function;

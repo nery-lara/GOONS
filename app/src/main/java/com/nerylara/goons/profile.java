@@ -41,7 +41,7 @@ public class profile {
         mImageNum = PreferenceManager.getDefaultSharedPreferences(mContext);
     }
 
-    private void setId(String id){
+    public void setId(String id){
         userId = id;
     }
 
