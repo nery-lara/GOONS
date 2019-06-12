@@ -37,7 +37,7 @@ public class SquadsFragment extends Fragment implements View.OnClickListener {
 
         rootView = (ViewGroup) inflater.inflate(R.layout.fragment_squads, container, false);
         final ImageView mySquad = rootView.findViewById(R.id.mySquad);
-
+        set_default();
         String username = getArguments().getString("Username_transfer");
         System.out.println("Username in SQUADS_FRAGMENT" + username);
 
@@ -114,6 +114,42 @@ public class SquadsFragment extends Fragment implements View.OnClickListener {
         check_squad_displayed();
 
         return rootView;
+    }
+
+    public void set_default() {
+        final String username = getArguments().getString("Username_transfer");
+        profile profile = new profile(getContext());
+        profile.setId(username);
+        profile.sendProfileDetails(getContext());
+        String squad = profile.getSquad();
+
+        final ImageView mySquad = rootView.findViewById(R.id.mySquad);
+        final ImageView other_squad0 = rootView.findViewById(R.id.otherSquad0);
+        final ImageView other_squad1 = rootView.findViewById(R.id.otherSquad1);
+        final ImageView other_squad2 = rootView.findViewById(R.id.otherSquad2);
+
+
+        if (squad.equalsIgnoreCase("north")) {
+            mySquad.setImageResource(R.drawable.squad1);
+            other_squad0.setImageResource(R.drawable.squad2);
+            other_squad1.setImageResource(R.drawable.squad3);
+            other_squad2.setImageResource(R.drawable.squad4);
+        } else if (squad.equalsIgnoreCase("south")) {
+            mySquad.setImageResource(R.drawable.squad2);
+            other_squad0.setImageResource(R.drawable.squad1);
+            other_squad1.setImageResource(R.drawable.squad3);
+            other_squad2.setImageResource(R.drawable.squad4);
+        } else if (squad.equalsIgnoreCase("east")) {
+            mySquad.setImageResource(R.drawable.squad3);
+            other_squad0.setImageResource(R.drawable.squad1);
+            other_squad1.setImageResource(R.drawable.squad2);
+            other_squad2.setImageResource(R.drawable.squad4);
+        } else if (squad.equalsIgnoreCase("west")) {
+            mySquad.setImageResource(R.drawable.squad4);
+            other_squad0.setImageResource(R.drawable.squad1);
+            other_squad1.setImageResource(R.drawable.squad2);
+            other_squad2.setImageResource(R.drawable.squad3);
+        }
     }
 
     public void check_squad_displayed(){
