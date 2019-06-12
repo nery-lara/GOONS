@@ -15,23 +15,39 @@ import cz.msebera.android.httpclient.entity.StringEntity;
 public class squad {
 
     private String userId;
-    private String squad;
     private Context mContext;
-    private SharedPreferences mRep;
-    private SharedPreferences.Editor repEditor;
-    private SharedPreferences mMembers;
-    private SharedPreferences.Editor membersEditor;
-    private SharedPreferences mWins;
-    private SharedPreferences.Editor winsEditor;
-    private SharedPreferences mLosses;
-    private SharedPreferences.Editor lossesEditor;
+    private SharedPreferences.Editor mEditor;
+    private SharedPreferences nMembers;
+    private SharedPreferences eMembers;
+    private SharedPreferences wMembers;
+    private SharedPreferences sMembers;
+    private SharedPreferences nRep;
+    private SharedPreferences eRep;
+    private SharedPreferences wRep;
+    private SharedPreferences sRep;
+    private SharedPreferences nWins;
+    private SharedPreferences eWins;
+    private SharedPreferences wWins;
+    private SharedPreferences sWins;
+
+
+
+
 
     squad(Context context){
         mContext = context;
-        mRep = PreferenceManager.getDefaultSharedPreferences(mContext);
-        mMembers = PreferenceManager.getDefaultSharedPreferences(mContext);
-        mWins = PreferenceManager.getDefaultSharedPreferences(mContext);
-        mLosses = PreferenceManager.getDefaultSharedPreferences(mContext);
+        nMembers = PreferenceManager.getDefaultSharedPreferences(mContext);
+        eMembers = PreferenceManager.getDefaultSharedPreferences(mContext);
+        wMembers = PreferenceManager.getDefaultSharedPreferences(mContext);
+        sMembers = PreferenceManager.getDefaultSharedPreferences(mContext);
+        nRep = PreferenceManager.getDefaultSharedPreferences(mContext);
+        eRep = PreferenceManager.getDefaultSharedPreferences(mContext);
+        wRep = PreferenceManager.getDefaultSharedPreferences(mContext);
+        sRep = PreferenceManager.getDefaultSharedPreferences(mContext);
+        nWins = PreferenceManager.getDefaultSharedPreferences(mContext);
+        eWins = PreferenceManager.getDefaultSharedPreferences(mContext);
+        wWins = PreferenceManager.getDefaultSharedPreferences(mContext);
+        sWins = PreferenceManager.getDefaultSharedPreferences(mContext);
     }
 
 
@@ -40,31 +56,59 @@ public class squad {
         userId = id;
     }
 
-    void setSquad(String squad){
-        this.squad = squad;
+    int getNorthMemberCount(){
+        return (nMembers.getInt("nMembers", 0));
     }
 
-    String getMembers(){
-        return (mMembers.getString("rank", ""));
+    int getEastMemberCount(){
+        return (eMembers.getInt("eMembers", 0));
     }
 
-    String getRep(){
-        return (mRep.getString("rank", ""));
+    int getWestMemberCount(){
+        return (wMembers.getInt("wMembers", 0));
     }
 
-    double getWinrate(){
-        int wins = mWins.getInt("wins", 0);
-        int losses = mWins.getInt("losses", 0);
-        return (wins/(wins+losses));
+    int getSouthMemberCount(){
+        return (sMembers.getInt("eMembers", 0));
     }
 
+    int getNorthRep(){
+        return (nRep.getInt("nRep", 0));
+    }
+
+    int getEastRep(){
+        return (eRep.getInt("eRep", 0));
+    }
+
+    int getWestRep() {
+        return (wRep.getInt("wRep", 0));
+    }
+
+    int getSouthRep() {
+        return (sRep.getInt("sRep", 0));
+    }
+
+    int getNorthWins(){
+        return (nWins.getInt("nWins", 0));
+    }
+
+    int getEastWins(){
+        return (eWins.getInt("eWins", 0));
+    }
+
+    int getWestWins(){
+        return (wWins.getInt("wWins", 0));
+    }
+
+    int getSouthWins(){
+        return (sWins.getInt("sWins", 0));
+    }
 
     private String squadDetails(){
         /*create JSONObject: return string*/
         JSONObject squadDetails = new JSONObject();
         try {
             squadDetails.put("type", "squad");
-            squadDetails.put("squad", squad);
             squadDetails.put("userid", userId);
         }catch(JSONException e) {
             //do something
@@ -73,7 +117,7 @@ public class squad {
     }
 
     public void sendSquadDetails() {
-        String relativeUrl = "squad";
+        String relativeUrl = "squads";
         String contentType = "application/json";
         String entity = squadDetails();
         /* send post request*/
@@ -85,29 +129,79 @@ public class squad {
                 try {
                     JSONObject serverResp = new JSONObject(response.toString());
                     String type = serverResp.getString("type");
-                    if(type.equals("squad")) {
-                        JSONArray members = serverResp.getJSONArray("members");
-                        String membs = members.toString();
-                        String rep = serverResp.getString("rep");
-                        int wins = serverResp.getInt("wins");
-                        int losses = serverResp.getInt("losses");
+                    if(type.equals("squads")) {
+                        Log.d("squad response:", "" + response);
+                        JSONObject north = serverResp.getJSONObject("north");
+                        Log.d("squad north:", "" + north);
+                        JSONObject east = serverResp.getJSONObject("east");
+                        JSONObject west = serverResp.getJSONObject("west");
+                        JSONObject south = serverResp.getJSONObject("south");
+                        int northWins = north.getInt("wins");
+                        Log.d("squad northwins:", "" + northWins);
+                        int eastWins = east.getInt("wins");
+                        int westWins = west.getInt("wins");
+                        int southWins = south.getInt("wins");
+                        int nMembs = north.getInt("count");
+                        int eMembs = east.getInt("count");
+                        int wMembs = west.getInt("count");
+                        int sMembs = south.getInt("count");
+                        int nReps = north.getInt("rep");
+                        int eReps = east.getInt("rep");
+                        int wReps= west.getInt("rep");
+                        int sReps = south.getInt("rep");
 
 
-                        membersEditor = mMembers.edit();
-                        membersEditor.putString("members", membs);
-                        membersEditor.apply();
 
-                        repEditor = mRep.edit();
-                        repEditor.putString("rep", rep);
-                        repEditor.apply();
 
-                        winsEditor = mWins.edit();
-                        winsEditor.putInt("wins", wins);
-                        winsEditor.apply();
 
-                        lossesEditor = mLosses.edit();
-                        lossesEditor.putInt("losses", losses);
-                        lossesEditor.apply();
+                        mEditor = nMembers.edit();
+                        mEditor.putInt("nMembers", nMembs);
+                        mEditor.apply();
+
+                        mEditor = eMembers.edit();
+                        mEditor.putInt("eMembers", eMembs);
+                        mEditor.apply();
+
+                        mEditor = wMembers.edit();
+                        mEditor.putInt("wMembers", wMembs);
+                        mEditor.apply();
+
+                        mEditor = sMembers.edit();
+                        mEditor.putInt("sMembers", sMembs);
+                        mEditor.apply();
+
+                        mEditor = nRep.edit();
+                        mEditor.putInt("nRep", nReps);
+                        mEditor.apply();
+
+                        mEditor = eRep.edit();
+                        mEditor.putInt("eRep", eReps);
+                        mEditor.apply();
+
+                        mEditor = wRep.edit();
+                        mEditor.putInt("wRep", wReps);
+                        mEditor.apply();
+
+                        mEditor = sRep.edit();
+                        mEditor.putInt("sRep", sReps);
+                        mEditor.apply();
+
+                        mEditor = nWins.edit();
+                        mEditor.putInt("nWins", northWins);
+                        mEditor.apply();
+
+                        mEditor = eWins.edit();
+                        mEditor.putInt("eWins", eastWins);
+                        mEditor.apply();
+
+                        mEditor = wWins.edit();
+                        mEditor.putInt("wWins", westWins);
+                        mEditor.apply();
+
+                        mEditor = sWins.edit();
+                        mEditor.putInt("sWins", southWins);
+                        mEditor.apply();
+
                     }
 
 

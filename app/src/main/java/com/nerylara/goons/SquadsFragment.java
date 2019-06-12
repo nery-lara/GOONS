@@ -28,6 +28,7 @@ public class SquadsFragment extends Fragment implements View.OnClickListener {
 
 
 
+
     @SuppressLint("ResourceType")
     @Nullable
     @Override
@@ -41,10 +42,12 @@ public class SquadsFragment extends Fragment implements View.OnClickListener {
         final ImageView other_squad0 = rootView.findViewById(R.id.otherSquad0);
         final ImageView other_squad1 = rootView.findViewById(R.id.otherSquad1);
         final ImageView other_squad2 = rootView.findViewById(R.id.otherSquad2);
-
-        TextView reputation = rootView.findViewById(R.id.reputation);
+        final squad squad = new squad(getContext());
+        squad.sendSquadDetails();
+        TextView wins = rootView.findViewById(R.id.reputation);
         TextView placements = rootView.findViewById(R.id.placement);
         TextView members = rootView.findViewById(R.id.members);
+        squad.sendSquadDetails();
 
         if (squad_indicator == 0) {
             mySquad.setImageResource(R.drawable.squad1);
@@ -75,6 +78,7 @@ public class SquadsFragment extends Fragment implements View.OnClickListener {
             other_squad1.setImageResource(R.drawable.squad2);
             other_squad2.setImageResource(R.drawable.squad3);
         }
+
 
         other_squad0.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,36 +118,41 @@ public class SquadsFragment extends Fragment implements View.OnClickListener {
     }
 
     public void check_squad_displayed(){
-        final ImageView mySquad = rootView.findViewById(R.id.mySquad);
 
-        TextView reputation = rootView.findViewById(R.id.reputation);
+        final squad squad = new squad(getContext());
+        final ImageView mySquad = rootView.findViewById(R.id.mySquad);
+        TextView wins = rootView.findViewById(R.id.reputation);
         TextView placements = rootView.findViewById(R.id.placement);
         TextView members = rootView.findViewById(R.id.members);
 
         if (mySquad.getDrawable().getConstantState() == getResources().getDrawable(R.drawable.squad1)
                 .getConstantState()){
             System.out.println("Squad 1 has been chosen");
-            members.setText("0");
-            placements.setText("1");
-            reputation.setText("100");
+            Log.d("squad north:",  Integer.toString(squad.getNorthMemberCount()));
+            members.setText(Integer.toString(squad.getNorthMemberCount()));
+            placements.setText(Integer.toString(squad.getNorthRep()));
+            wins.setText(Integer.toString(squad.getNorthWins()));
         }else if (mySquad.getDrawable().getConstantState() == getResources().getDrawable(R.drawable.squad2)
                 .getConstantState()){
             System.out.println("Squad 2 has been chosen");
-            members.setText("1");
-            placements.setText("12");
-            reputation.setText("11230");
+            Log.d("squad south:",  Integer.toString(squad.getSouthMemberCount()));
+            members.setText(Integer.toString(squad.getSouthMemberCount()));
+            placements.setText(Integer.toString(squad.getSouthRep()));
+            wins.setText(Integer.toString(squad.getSouthWins()));
         }else if (mySquad.getDrawable().getConstantState() == getResources().getDrawable(R.drawable.squad3)
                 .getConstantState()){
             System.out.println("Squad 3 has been chosen");
-            members.setText("0");
-            placements.setText("1");
-            reputation.setText("10qwe0");
+            Log.d("squad East:",  Integer.toString(squad.getEastMemberCount()));
+            members.setText(Integer.toString(squad.getEastMemberCount()));
+            placements.setText(Integer.toString(squad.getEastRep()));
+            wins.setText(Integer.toString(squad.getEastWins()));
         } else if (mySquad.getDrawable().getConstantState() == getResources().getDrawable(R.drawable.squad4)
                 .getConstantState()) {
             System.out.println("Squad 4 has been chosen");
-            members.setText("0qwer");
-            placements.setText("1qwf");
-            reputation.setText("1weve2323200");
+            Log.d("squad West:",  Integer.toString(squad.getWestMemberCount()));
+            members.setText(Integer.toString(squad.getWestMemberCount()));
+            placements.setText(Integer.toString(squad.getWestRep()));
+            wins.setText(Integer.toString(squad.getWestWins()));
         }
     }
 
