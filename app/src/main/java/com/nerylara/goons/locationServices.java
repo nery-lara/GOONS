@@ -2,6 +2,7 @@ package com.nerylara.goons;
 
 import android.content.Context;
 import android.location.Location;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
@@ -12,22 +13,42 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import cz.msebera.android.httpclient.Header;
 import cz.msebera.android.httpclient.entity.StringEntity;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 public class locationServices {
 
     private FusedLocationProviderClient mFusedLocationProviderClient;
     private Context mContext;
+    private SharedPreferences.Editor mEditor;
+    private SharedPreferences mLatitude;
+    private SharedPreferences mLongitude;
     private String relativeUrl = "location";
     private String contentType = "application/json";
     private String userId;
 
     /* set context */
-    protected void setContext(Context context){
+    locationServices(Context context){
         mContext = context;
+        mLatitude = PreferenceManager.getDefaultSharedPreferences(mContext);
+        mLongitude = PreferenceManager.getDefaultSharedPreferences(mContext);
     }
 
     void setId(String id) {
+
         userId = id;
+    }
+
+    Double getLongitude(){
+        String lon = mLongitude.getString("Longitude", "");
+        return Double.parseDouble(lon);
+
+    }
+
+    Double getLatitude(){
+        String lat = mLongitude.getString("Latitude", "");
+        return Double.parseDouble(lat);
+
     }
 
     public void requestLocation() {
@@ -70,6 +91,14 @@ public class locationServices {
                             }
                         }
                     });
+
+                    mEditor = mLongitude.edit();
+                    mEditor.putString("Latitude", Double.toString(latitude));
+                    mEditor.apply();
+
+                    mEditor = mLatitude.edit();
+                    mEditor.putString("Longitude", Double.toString(longitude));
+                    mEditor.apply();
                 }
             }
 
